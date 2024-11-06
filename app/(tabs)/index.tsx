@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     width: "100%",
     borderBottomColor: 'black',
     borderBottomWidth: 1,
-    alignSelf: 'stretch',
 
   },
 });
@@ -39,26 +38,28 @@ type roslina = {
   wiecej: boolean;
 }
 
-const Greating = (props: roslina) => {
-  if (props.wiecej == true) {
-    return (
-      <View style={styles.bar}>
-        <Text>roslina: {props.name}</Text>
-        <Text>Wiecej</Text>
-      </View>
-    );
-  }
-  else {
-    return (
-      <View style={styles.bar}>
-        <Text>roslina: {props.name}</Text>
-      </View>
-    );
-  }
-}
 
 export default function HomeScreen() {
+
+  const Greating = (props: roslina) => {
+    if (props.wiecej == true) {
+      return (
+        <View style={styles.bar}>
+          <Text>roslina: {props.name}</Text>
+          <Text>Wiecej</Text>
+        </View>
+      );
+    }
+    else {
+      return (
+        <View style={styles.bar}>
+          <Text>roslina: {props.name}</Text>
+        </View>
+      );
+    }
+  }
   return (
+
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
       headerImage={
@@ -68,7 +69,7 @@ export default function HomeScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Hello Wor!</ThemedText>
+        <ThemedText type="title">czesc</ThemedText>
         <HelloWave />
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
@@ -96,9 +97,6 @@ export default function HomeScreen() {
           <ThemedText type="defaultSemiBold">app-example</ThemedText>.
         </ThemedText>
       </ThemedView>
-      <Greating name="pelargonia" wiecej={true}> </Greating>
-      <Greating name="kwiut" wiecej={false}> </Greating>
-      <Greating name="pelargonia" wiecej={false}> </Greating>
     </ParallaxScrollView>
   );
 }
