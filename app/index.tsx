@@ -1,70 +1,64 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
-export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
-  );
-}
+import React from 'react';
+import { View, Text, Image, ScrollView, TextInput, StyleSheet, Pressable, Alert } from 'react-native';
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
+    top: {
+        backgroundColor: '#0b6e18',
+        width: "100%",
+        height: 100,
+        alignItems: "center",
+        justifyContent: "space-around",
+        display: "flex",
+        flexDirection: "row",
+        marginTop: -26,
+    },
+    searcher: {
+        borderRadius: 90,
+        height: 40,
+        width: "40%",
+        borderColor: "black",
+        borderWidth: 1,
+        backgroundColor: "white",
+        justifyContent: "space-around",
+    },
+    nowa_r: {
+        position: 'absolute',
+        left: "5%",
+        top: "75%",
+        backgroundColor: "#CFCB00",
+        width: 100,
+        height: 100,
+        zIndex: 2,
+        borderRadius: 90,
+        justifyContent: "center",
+        display: "flex",
+    }
 });
+
+export default function Index() {
+    return (
+        <View style={{
+            flex: 1,
+        }}>
+            <View style={styles.top}>
+                <View>
+                    <Text>Mój dom</Text>
+                </View>
+                <View style={styles.searcher}>
+                    <TextInput style={{
+                        marginLeft: 15,
+                    }}
+                        defaultValue="You can type in me"
+                    />
+                </View>
+
+            </View>
+            <ScrollView>
+
+            </ScrollView>
+            <Pressable style={styles.nowa_r}>
+                <Image source={require('@/assets/images/Krzyz.png')} style={{ alignSelf: 'center' }} />
+            </Pressable>
+        </View>
+    );
+};

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "rosliny_app",
-    "slug": "rosliny_app",
+    "name": "roslint",
+    "slug": "roslint",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
