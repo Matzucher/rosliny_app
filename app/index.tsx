@@ -48,7 +48,7 @@ export default function Index() {
                     <TextInput style={{
                         marginLeft: 15,
                     }}
-                        defaultValue="You can type in me"
+						  		placeholder="wyszukaj"
                     />
                 </View>
 
