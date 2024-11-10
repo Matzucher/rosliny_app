@@ -1,5 +1,15 @@
 import React from 'react';
-import { View, Text, Image, ScrollView, TextInput, StyleSheet, Pressable, Alert } from 'react-native';
+import { View,
+	Text,
+	Image,
+	ScrollView,
+	TextInput,
+	StyleSheet,
+	TouchableOpacity,
+	FlatList,
+	Pressable,
+	Alert
+} from 'react-native';
 
 const styles = StyleSheet.create({
     top: {
@@ -24,10 +34,10 @@ const styles = StyleSheet.create({
     nowa_r: {
         position: 'absolute',
         left: "5%",
-        top: "75%",
+        top: "80%",
         backgroundColor: "#CFCB00",
-        width: 100,
-        height: 100,
+        width: 90,
+        height: 90,
         zIndex: 2,
         borderRadius: 90,
         justifyContent: "center",
@@ -36,6 +46,11 @@ const styles = StyleSheet.create({
 });
 
 export default function Index() {
+
+	const PlantAddListOpen = () => {
+		
+	};
+
     return (
         <View style={{
             flex: 1,
@@ -56,8 +71,12 @@ export default function Index() {
             <ScrollView>
 
             </ScrollView>
-            <Pressable style={styles.nowa_r}>
-                <Image source={require('@/assets/images/Krzyz.png')} style={{ alignSelf: 'center' }} />
+            <Pressable style={styles.nowa_r}
+				  	onPress={() => {
+						PlantAddListOpen();
+				 	}}
+				>
+                <Image source={require('@/assets/images/Krzyz.png')} style={{ alignSelf: 'center', width: 90, height: 90}} />
             </Pressable>
         </View>
     );
