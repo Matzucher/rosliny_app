@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Text, Image, ScrollView, TextInput, StyleSheet, Pressable, Alert } from 'react-native';
+import { View, Text, Image, ScrollView, TextInput, StyleSheet, Pressable, Alert, Button } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import NavBar from '../components/NavBar';
 
 const styles = StyleSheet.create({
     top: {
@@ -10,7 +12,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-around",
         display: "flex",
         flexDirection: "row",
-        marginTop: -26,
+        marginTop: -20,
     },
     searcher: {
         borderRadius: 90,
@@ -23,23 +25,32 @@ const styles = StyleSheet.create({
     },
     nowa_r: {
         position: 'absolute',
-        left: "5%",
-        top: "75%",
+        left: "15%",
+        top: "70%",
         backgroundColor: "#CFCB00",
-        width: 100,
-        height: 100,
+        width: 50,
+        height: 50,
         zIndex: 2,
         borderRadius: 90,
         justifyContent: "center",
         display: "flex",
+    },
+    body: {
+        flexDirection: 'column',
+        flexGrow: 1,
+        justifyContent: 'space-between',
     }
 });
 
-export default function Index() {
+type HomeScreenProps = {
+    navigation: any;
+};
+
+
+const Rosliny: React.FC<HomeScreenProps> = ({ navigation }) => {
+
     return (
-        <View style={{
-            flex: 1,
-        }}>
+        <SafeAreaView style={styles.body}>
             <View style={styles.top}>
                 <View>
                     <Text>Mój dom</Text>
@@ -51,14 +62,17 @@ export default function Index() {
                         defaultValue="You can type in me"
                     />
                 </View>
-
             </View>
-            <ScrollView>
-
+            <ScrollView style={{
+                flexGrow: 1,
+            }}>
             </ScrollView>
-            <Pressable style={styles.nowa_r}>
-                <Image source={require('@/assets/images/Krzyz.png')} style={{ alignSelf: 'center' }} />
+            <Pressable style={styles.nowa_r} onPress={() => navigation.navigate('Choise')} >
+                <Image source={require('@/assets/images/Krzyz.png')} style={{ alignSelf: 'center', }} />
             </Pressable>
-        </View>
+            <NavBar navigation={navigation} active='Rosliny' />
+        </SafeAreaView>
     );
 };
+
+export default Rosliny;
