@@ -1,5 +1,7 @@
-import React from 'react';
-import { SafeAreaView, Text, StyleSheet, View, TextInput, ImageBackground, Pressable, Image } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView, Text, StyleSheet, View, TextInput, ImageBackground, Pressable, Image, ScrollView, GestureResponderEvent } from 'react-native';
+import rosliny from "../components/Database";
+import mojeRosliny from "../components/MojeRosliny";
 
 const styles = StyleSheet.create({
     body: {
@@ -30,13 +32,56 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
     },
+    roslina_tab: {
+        width: '100%',
+        height: 100,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        display: 'flex',
+        borderBottomWidth: 2,
+        borderBlockColor: 'black',
+        flexDirection: 'row',
+    },
 });
+
+
 
 type HomeScreenProps = {
     navigation: any;
 };
 
+
+const Okres = (props: { okres_lato: number, okres_zima: number }) => {
+    if (props.okres_zima == props.okres_lato) {
+        return (
+            <Text> co {props.okres_lato} dni</Text>
+        );
+    }
+    else {
+        return (
+            <Text> od {props.okres_zima} - {props.okres_lato} dni</Text>
+        );
+    }
+}
+
+
 const Choise: React.FC<HomeScreenProps> = ({ navigation }) => {
+    const [searchText, setSearchText] = useState('');
+
+    const DodajDoMojichRoslin = (id: number, event: GestureResponderEvent): void => {
+        const newPlant = { ...rosliny[id - 1] };
+        newPlant.id = mojeRosliny.length + 1;
+        mojeRosliny.push(newPlant);
+        navigation.navigate('Rosliny');
+    }
+
+    const Rosliny = rosliny.filter((roslina) => roslina.nazwa.toLowerCase().includes(searchText.toLowerCase())).map((roslina, index) => (
+        <Pressable key={index} style={styles.roslina_tab} onPress={(event) => DodajDoMojichRoslin(roslina.id, event)}>
+            <Text>{roslina.nazwa}</Text>
+            <Text><Okres okres_lato={roslina.okres_podlewania_latem} okres_zima={roslina.okres_podlewania_zima}></Okres></Text>
+        </Pressable>
+    ));
+
     return (
         <SafeAreaView style={styles.body}>
             <View style={styles.top}>
@@ -47,9 +92,16 @@ const Choise: React.FC<HomeScreenProps> = ({ navigation }) => {
                     <TextInput style={{
                         marginLeft: 15,
                     }}
-                        defaultValue="You can type in me"
+                        value={searchText}
+                        onChangeText={(text) => setSearchText(text)}
+                        placeholder="Wyszukaj"
                     />
                 </View>
+            </View>
+            <View style={{ maxHeight: 654, minHeight: 100, flexGrow: 1 }}>
+                <ScrollView>
+                    {Rosliny}
+                </ScrollView>
             </View>
         </SafeAreaView>
     );
