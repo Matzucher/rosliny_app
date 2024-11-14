@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { SafeAreaView, Text, StyleSheet, View, TextInput, ImageBackground, Pressable, Image, ScrollView, GestureResponderEvent } from 'react-native';
 import rosliny from "../components/Database";
-import mojeRosliny from "../components/MojeRosliny";
+import { usePlants } from '../components/RoslinyContext';
+import { savePlants } from '../components/MojeRosliny';
+
 
 const styles = StyleSheet.create({
     body: {
@@ -67,11 +69,13 @@ const Okres = (props: { okres_lato: number, okres_zima: number }) => {
 
 const Choise: React.FC<HomeScreenProps> = ({ navigation }) => {
     const [searchText, setSearchText] = useState('');
+    const mojeRosliny = usePlants();
 
     const DodajDoMojichRoslin = (id: number, event: GestureResponderEvent): void => {
         const newPlant = { ...rosliny[id - 1] };
         newPlant.id = mojeRosliny.length + 1;
         mojeRosliny.push(newPlant);
+        savePlants(mojeRosliny);
         navigation.navigate('Rosliny');
     }
 

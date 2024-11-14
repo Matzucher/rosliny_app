@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Image, ScrollView, TextInput, StyleSheet, Pressable, Alert, Button } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NavBar from '../components/NavBar';
-import mojeRosliny from "../components/MojeRosliny";
+import { usePlants } from '../components/RoslinyContext';
 
 const styles = StyleSheet.create({
     top: {
@@ -71,6 +71,8 @@ const Okres = (props: { okres_lato: number, okres_zima: number }) => {
 }
 
 const Rosliny: React.FC<HomeScreenProps> = ({ navigation }) => {
+
+    const mojeRosliny = usePlants();
 
     const [searchText, setSearchText] = useState('');
 

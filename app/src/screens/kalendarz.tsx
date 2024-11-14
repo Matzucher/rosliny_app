@@ -5,7 +5,7 @@ import { View, Text, Image, ScrollView, TextInput, StyleSheet, Pressable, Alert,
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import NavBar from '../components/NavBar';
 import rosliny from "../components/Database";
-import mojeRosliny from "../components/MojeRosliny";
+import { usePlants } from '../components/RoslinyContext';
 
 const styles = StyleSheet.create({
     top: {
@@ -47,6 +47,8 @@ const colors = ['#FFA07A', '#20B2AA', '#9370DB', '#FFD700', '#FF4500', '#2E8B57'
 const Kalendarz: React.FC<HomeScreenProps> = ({ navigation }) => {
     const [selected, setSelected] = useState('');
     const [markedDates, setMarkedDates] = useState<{ [key: string]: { dots: { key: string, color: string }[] } }>({});
+    const mojeRosliny = usePlants();
+
 
     // Generate marked dates with unique dots per plant, adjusting for season
     const getMarkedDates = () => {
@@ -64,21 +66,21 @@ const Kalendarz: React.FC<HomeScreenProps> = ({ navigation }) => {
             // Loop through dates based on the interval for each plant
             while (currentDate.getFullYear() <= today.getFullYear() + 1) {
                 const formattedDate = currentDate.toISOString().split('T')[0]; // Format as YYYY-MM-DD
-                
+
                 // Initialize the date if not already present in markedDates
                 if (!markedDates[formattedDate]) {
                     markedDates[formattedDate] = { dots: [] };
                 }
-                
+
                 // Add a dot for each plant
                 markedDates[formattedDate].dots.push({
                     key: `plant_${plant.id}`,
                     color: plantColor
                 });
-                
+
                 // Move to the next watering date, checking if we need to switch intervals based on season
                 currentDate.setDate(currentDate.getDate() + wateringInterval);
-                
+
                 // Check if we need to switch watering interval (e.g., moving from March to April)
                 const newMonth = currentDate.getMonth() + 1;
                 if ((isWinter && newMonth >= 4 && newMonth <= 9) || (!isWinter && (newMonth <= 3 || newMonth >= 10))) {
