@@ -6,7 +6,7 @@ type roslina = {
 };
 
 const rosliny: roslina[] = [
-    { id: 1, nazwa: "Aglaonema", okres_podlewania_zima: 10, okres_podlewania_latem: 12, },
+    { id: 1, nazwa: "Aglaonema", okres_podlewania_zima: 12, okres_podlewania_latem: 10, },
     { id: 2, nazwa: "Albuca Spiralis", okres_podlewania_zima: 20, okres_podlewania_latem: 20 },
     { id: 3, nazwa: "Aloes", okres_podlewania_zima: 20, okres_podlewania_latem: 20 },
 ];

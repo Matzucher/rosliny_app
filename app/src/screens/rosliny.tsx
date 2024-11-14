@@ -65,7 +65,7 @@ const Okres = (props: { okres_lato: number, okres_zima: number }) => {
     }
     else {
         return (
-            <Text> od {props.okres_zima} - {props.okres_lato} dni</Text>
+            <Text> od {props.okres_lato} - {props.okres_zima} dni</Text>
         );
     }
 }
