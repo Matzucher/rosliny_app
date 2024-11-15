@@ -5,7 +5,6 @@ import NavBar from '../components/NavBar';
 import { usePlants } from '../components/RoslinyContext';
 import { savePlants } from '../components/MojeRosliny';
 
-
 const styles = StyleSheet.create({
     top: {
         backgroundColor: '#0b6e18',
@@ -79,7 +78,7 @@ const Okres = (props: { okres_lato: number, okres_zima: number }) => {
     }
     else {
         return (
-            <Text> od {props.okres_lato} - {props.okres_zima} dni</Text>
+            <Text> od {props.okres_zima} - {props.okres_lato} dni</Text>
         );
     }
 }
@@ -107,7 +106,7 @@ const Rosliny: React.FC<HomeScreenProps> = ({ navigation }) => {
                 console.log(mojaRoslina);
 
             }}>
-                <Image source={require('@/assets/images/minus.png')} style={{ alignSelf: 'center', }}></Image>
+                <Image source={require("../../../assets/images/minus.png")} style={{ alignSelf: 'center', }}></Image>
             </Pressable>
         </Pressable>
     ));
@@ -134,7 +133,7 @@ const Rosliny: React.FC<HomeScreenProps> = ({ navigation }) => {
                 </ScrollView>
             </View>
             <Pressable style={styles.nowa_r} onPress={() => navigation.navigate('Choise')} >
-                <Image source={require('@/assets/images/Krzyz.png')} style={{ alignSelf: 'center', }} />
+                <Image source={require('../../../assets/images/Krzyz.png')} style={{ alignSelf: 'center', }} />
             </Pressable>
             <NavBar navigation={navigation} active='Rosliny' />
         </SafeAreaView>

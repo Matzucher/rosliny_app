@@ -5,6 +5,7 @@ import { usePlants } from '../components/RoslinyContext';
 import { savePlants } from '../components/MojeRosliny';
 
 
+
 const styles = StyleSheet.create({
     body: {
         flexGrow: 1,
@@ -89,7 +90,7 @@ const Choise: React.FC<HomeScreenProps> = ({ navigation }) => {
         <SafeAreaView style={styles.body}>
             <View style={styles.top}>
                 <Pressable style={styles.back} onPress={() => navigation.navigate('Rosliny')} >
-                    <Image source={require('@/assets/images/Back.png')} />
+                    <Image source={require('../../../assets/images/Back.png')} />
                 </Pressable>
                 <View style={styles.searcher}>
                     <TextInput style={{
