@@ -64,7 +64,6 @@ const Okres = (props: { okres_lato: number, okres_zima: number }) => {
     }
 }
 
-
 const Choise: React.FC<HomeScreenProps> = ({ navigation }) => {
     const [searchText, setSearchText] = useState('');
 
