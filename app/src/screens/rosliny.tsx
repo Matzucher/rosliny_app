@@ -85,6 +85,8 @@ const Okres = (props: { okres_lato: number, okres_zima: number }) => {
 
 const Rosliny: React.FC<HomeScreenProps> = ({ navigation }) => {
 
+    const mojeRosliny = usePlants();
+
     const [searchText, setSearchText] = useState('');
 
 
