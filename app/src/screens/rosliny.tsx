@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, Image, ScrollView, TextInput, StyleSheet, Pressable, Alert, Button, RefreshControlBase } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NavBar from '../components/NavBar';
-import mojeRosliny from "../components/MojeRosliny";
-import rosliny from '../components/Database';
+import { usePlants } from '../components/RoslinyContext';
+import { savePlants } from '../components/MojeRosliny';
+
 
 const styles = StyleSheet.create({
     top: {
@@ -97,8 +98,8 @@ const Rosliny: React.FC<HomeScreenProps> = ({ navigation }) => {
             <Pressable onPress={() => { // IT WORKS PLES DONT TOUCH IT ----> Tlumaczenie dla mateusza - NIE DOTYKAJ TO DIALA
                 console.log(mojeRosliny.indexOf(mojaRoslina));
                 let index = mojeRosliny.indexOf(mojaRoslina);
-                mojeRosliny.splice(index,1);
-
+                mojeRosliny.splice(index, 1);
+                savePlants(mojeRosliny);    //Musze dotknąć bo nie działa ze storagem
 
                 navigation.navigate('Kalendarz');
                 navigation.navigate('Rosliny');
@@ -106,7 +107,7 @@ const Rosliny: React.FC<HomeScreenProps> = ({ navigation }) => {
                 console.log(mojaRoslina);
 
             }}>
-                    <Image source={require('@/assets/images/minus.png')} style={{alignSelf: 'center',}}></Image>
+                <Image source={require('@/assets/images/minus.png')} style={{ alignSelf: 'center', }}></Image>
             </Pressable>
         </Pressable>
     ));
